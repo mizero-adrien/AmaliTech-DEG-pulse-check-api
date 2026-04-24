@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pulse_user
+      POSTGRES_PASSWORD: pulse_pass
+      POSTGRES_DB: pulse_check_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pulse_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pulse_user -d pulse_check_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pulse_data:
