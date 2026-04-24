@@ -26,6 +26,14 @@ build/
 
 # Local database files
 *.sqlite3
+*.db
+
+# IDE configuration
+.idea/
+.vscode/
+
+# Log files
+*.log
 
 # Alembic — ignore generated migration files, keep the folder
 alembic/versions/*.py
